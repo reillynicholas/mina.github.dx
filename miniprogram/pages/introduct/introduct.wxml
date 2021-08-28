@@ -1,0 +1,10 @@
+<!-- <import src="/template/login/index.wxml" /> -->
+<view class="container">
+  <image class="head-image" src="/images/strlamp.jpg"></image>
+  <view class="content">
+    <view class="title">设备介绍</view>
+    <view class="text-content">
+      目前，工厂生产产品拥有的设备齐全，冲床若干台，其中包括有台式冲床、电动冲床、气动冲床、精密冲床、小型冲床、小吨位冲床等机型；送料机、若干台送料器、三合一整平送料机、滚轮送料机；钻孔攻牙机若干台、手编机数台、高精密碰焊机数台、供压机机数台；数控线切割机三台，除特殊情况外，不对外加工线切割，多用于本厂模具制作以及生产需要；现如今，已拥有超800套模具，有各种各样的开料模具、冲孔模具、扎型模具、复合型模具以及自动模具。
+    </view>
+  </view>
+</view>

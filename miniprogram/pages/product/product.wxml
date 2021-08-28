@@ -1,0 +1,53 @@
+<view class="container">
+  <!--搜索框-->
+  <view class="search-view">
+    <view class="search-content">
+      <image src="/images/search-pic.png" class="search-icon" />
+      <input placeholder="请输入搜索内容" class="search-input" maxlength="30" confirm-type="搜索"
+        bindinput='listenerSearchInput'>
+      </input>
+    </view>
+    <button size="mini" class='search-btn' bindtap="toSearch" type="primary">搜索</button>
+  </view>
+  <!--轮播图-->
+  <view class="swiper-container">
+    <swiper class="swiper_box" autoplay circular bindchange="swiperchange">
+      <block wx:for="{{banners}}" wx:key="_id">
+        <swiper-item>
+          <image bindtap="tapBanner" data-id="{{item._id}}" src="{{item.fileID}}" class="slide-image" width="750rpx"
+            height="700rpx" />
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class="dots">
+      <block wx:for="{{banners}}" wx:key="unique">
+        <view class="dot{{index == swiperCurrent ? ' active' : ''}}"></view>
+      </block>
+    </view>
+  </view>
+  <!--分类展示-->
+  <view class="type-container">
+    <scroll-view class="type-navbar" scroll-x="true">
+      <view class="type-box" wx:for-items="{{categories}}" wx:key="_id">
+        <view id="{{item._id}}" class="type-navbar-item {{activeCategoryId == item._id ? 'type-item-on' : ''}}"
+          catchtap="catClick">
+          {{item.name}}
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <view class="goods-container">
+    <view class="goods-box" wx:for-items="{{goods}}" wx:key="_id" bindtap="toDetailsTap">
+      <view class="img-box">
+        <image src="{{item.fileID}}" class="image" mode="aspectFill" lazy-load="true" />
+      </view>
+      <view class="goods-title">{{item.name}}</view>
+      <view style='display:flex;'>
+        <view class="goods-price">¥ {{item.min_price}}</view>
+        <view wx:if="{{item.price && item.price > 0 && item.min_price != item.price}}" class="goods-price"
+          style='color:#aaa;text-decoration:line-through'>¥ {{item.price}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="no-more-goods">————————没有更多啦————————</view>
+</view>

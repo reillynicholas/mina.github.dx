@@ -1,0 +1,28 @@
+<!-- <import src="/template/login/index.wxml" /> -->
+<view class="container">
+  <view class="swiper-container">
+    <swiper class="swiper_box" autoplay circular bindchange="swiperchange">
+      <block wx:for="{{banners}}" wx:key="id">
+        <swiper-item>
+          <image bindtap="tapBanner" data-id="{{item.id}}" src="{{item.pic_url}}" class="slide-image" width="750rpx"
+            height="700rpx" />
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class="dots">
+      <block wx:for="{{banners}}" wx:key="unique">
+        <view class="dot{{index == swiperCurrent ? ' active' : ''}}"></view>
+      </block>
+    </view>
+  </view>
+  <view class="content">
+    <view class="title">缔鑫五金制品厂</view>
+    <view class="text-content">
+      中山市东升镇缔鑫五金厂有十多年的生产经验，以锐意进取，科技创新为目标，坚持“以质量求生存，以信誉求发展”，始终以孜孜不倦的追求和精益求精的热忱，为您的公司提供高品质的产品以及优良的服务。
+    </view>
+    <view class="text-content">我们拥有全套先进设备和高素质人才。是一家技术力量雄厚的生产企业。</view>
+    <view class="text-content">
+      成立至今专业致力于电器配件、灯饰配件、各种五金件等产品的研究与开发，坚持以人为本，强化企业内部管理，生产的的产品精度高，质量可靠，可按客户技术要求生产定做。承接各类五金产品加工，欢迎来图洽谈！
+    </view>
+  </view>
+</view>
