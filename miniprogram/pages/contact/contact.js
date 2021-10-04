@@ -15,7 +15,6 @@ Page({
     
     covers: [{
       id: 1,
-      iconPath: '/resources/location.png',
       latitude: 22.629464,
       longitude: 113.273364,
       clickable: true

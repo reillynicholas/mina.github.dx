@@ -43,7 +43,7 @@
       </view>
       <view class="goods-title">{{item.name}}</view>
       <view style='display:flex;'>
-        <view class="goods-price">¥ {{item.min_price}}</view>
+        <view class="goods-price">**仅供预览展示</view>
         <view wx:if="{{item.price && item.price > 0 && item.min_price != item.price}}" class="goods-price"
           style='color:#aaa;text-decoration:line-through'>¥ {{item.price}}</view>
       </view>

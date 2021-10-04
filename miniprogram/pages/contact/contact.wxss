@@ -4,6 +4,7 @@
   display: inline-block;
   line-height: 30px;
   background-color: honeydew;
+  padding-bottom: 30px;
 }
 
 .factory_name {
