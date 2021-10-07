@@ -1,10 +1,10 @@
 {
   "pages": [
-    "pages/contact/contact",
     "pages/index/index",
     "pages/logs/logs",
     "pages/product/product",
     "pages/product/info",
+    "pages/contact/contact",
     "pages/introduct/introduct",
     "pages/login/login",
     "pages/contact/components/upload-product"
