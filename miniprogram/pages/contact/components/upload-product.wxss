@@ -1,0 +1,50 @@
+
+.container-wrapper {
+  /* display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center; */
+  padding: 20px;
+}
+.lable {
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+  align-items: center;
+  margin: 25px 0;
+}
+.lable-upload-image {
+  display: flex;
+  flex-direction: column;
+}
+.image-wrapper {
+  padding: 20px;
+  height: 258px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.lable-name {
+  width: 110px;
+}
+.picker-value {
+  width: 100px;
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #cfb9b9;
+}
+.input {
+  width: 100%;
+  padding: 5px;
+  margin-left: 10px;
+  border-bottom: 1px solid #cfb9b9;
+}
+
+.btn-wrapper {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 180px;
+  display: flex;
+  align-items: center;
+}

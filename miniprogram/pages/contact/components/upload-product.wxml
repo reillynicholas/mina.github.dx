@@ -1,0 +1,24 @@
+<view class="container-wrapper">
+  <view class="lable">
+    <text class="lable-name">*产品名称: </text>
+    <input class="input" bindinput="onBindinput" />
+  </view>
+  <view>
+    <picker bindchange="bindPickerChange" value="{{index}}" range="{{categories}}" mode="selector" range-key="name">
+      <view class="lable">
+        <text class="lable-name">*所属分类: </text>
+        <text class="picker-value">{{categories[index].name}}</text>
+      </view>
+    </picker>
+  </view>
+  <viwe class="lable-upload-image">
+    <text class="lable-name">*上传图片: </text>
+    <view wx:if="{{bigImg}}" class="image-wrapper">
+      <image bindtap='changeBigImg' src='{{bigImg}}'></image>
+    </view>
+    <view wx:else class="image-wrapper">
+      <button bindtap='changeBigImg' type="default" size="mini">选择图片</button>
+    </view>
+  </viwe>
+  <view class="btn-wrapper"><button size="default" type="primary" bindtap="onSubmit">提交</button></view>
+</view>

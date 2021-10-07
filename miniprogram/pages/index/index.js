@@ -18,20 +18,6 @@ Page({
     })
   },
   onLoad: function () {
-    //查看是否授权
-    wx.getSetting({
-      success: function (res) {
-        if (res.authSetting['scope.userInfo']) {
-          console.log('已经授权登陆');
-        } else {
-          //用户没有授权
-          console.log("用户没有授权");
-          wx.switchTab({
-            url: '/pages/login/login',
-          })
-        }
-      }
-    });
     var that = this;
 
     that.setData({
@@ -62,4 +48,12 @@ Page({
       swiperCurrent: e.detail.current
     })
   },
+
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  }
 })

@@ -1,4 +1,5 @@
-// pages/contact/contact.js
+const db = wx.cloud.database()
+
 Page({
 
   /**
@@ -12,13 +13,13 @@ Page({
       width: 50,
       height: 50
     }],
-    
     covers: [{
       id: 1,
       latitude: 22.629464,
       longitude: 113.273364,
       clickable: true
-    }]
+    }],
+    isSuperMan: false
   },
   regionchange(e) {
     console.log(e.type)
@@ -29,12 +30,28 @@ Page({
   controltap(e) {
     console.log(e.detail.controlId)
   },
+  toUploadpage: function() {
+    wx.navigateTo({
+      url: '../contact/components/upload-product',
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad: function () {
+    const openId =  wx.getStorageSync('userInfo').openId
+    db.collection("super_user").where({
+      _openid: openId
+    }).get({
+      success: res => {
+        if (res.data[0] && res.data[0].rule === 1) {
+          this.setData({
+            isSuperMan: true
+          })
+        }
+      }
+    })
   },
 
   /**

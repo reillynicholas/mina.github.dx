@@ -11,7 +11,7 @@ Page({
   data: {
     nickName: "", //保存昵称
     avatarUrl: "", //保存头像,
-    canIUse: true
+    canIUse: true,
   },
 
   /**
@@ -25,7 +25,12 @@ Page({
     wx.cloud.callFunction({
       name: 'login',
       complete: res => {
+        wx.showLoading({
+          title: '加载中',
+        })
         const openid = res.result.openid
+        const userInfo = res.result.event.userInfo
+
         db.collection('user').where({
           _openid: openid
         }).get().then(res => {
@@ -49,7 +54,14 @@ Page({
               url: '/pages/index/index',
             })
           }
+          wx.setStorage({
+            key: "userInfo",
+            data: userInfo
+          })
         })
+      },
+      suscces: () =>{
+        wx.hideLoading()
       }
     })
     this.setData({
