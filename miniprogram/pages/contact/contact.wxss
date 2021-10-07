@@ -23,3 +23,9 @@
 .address {
 text-decoration: underline;
 }
+.btn-upload {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
