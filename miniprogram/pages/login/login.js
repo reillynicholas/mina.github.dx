@@ -21,7 +21,7 @@ Page({
     var that = this;
   },
 
-  getUserInfo(e) {
+  getUserInfo: function(e) {
     // 拿用户openid
     wx.cloud.callFunction({
       name: 'login',
@@ -38,6 +38,9 @@ Page({
     wx.getUserProfile({
       desc: '用于完善会员资料',
       success: res => {
+        wx.showLoading({
+          title: '加载中',
+        })
         this.setData({
           userInfo: res.userInfo,
           signature: res.signature
@@ -77,7 +80,7 @@ Page({
         })
       },
       complete: () => {
-        wx.hideLoading()
+        wx.hideToast()
       },
     })
   },
