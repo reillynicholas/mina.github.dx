@@ -38,9 +38,6 @@ Page({
     wx.getUserProfile({
       desc: '用于完善会员资料',
       success: res => {
-        wx.showLoading({
-          title: '加载中',
-        })
         this.setData({
           userInfo: res.userInfo,
           signature: res.signature
