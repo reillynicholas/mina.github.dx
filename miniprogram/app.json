@@ -5,8 +5,8 @@
     "pages/product/product",
     "pages/product/info",
     "pages/contact/contact",
-    "pages/introduct/introduct",
     "pages/login/login",
+    "pages/introduct/introduct",
     "pages/contact/components/upload-product"
   ],
   "window": {

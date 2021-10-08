@@ -6,7 +6,7 @@
     <view class="factory_name"><text>中山市小榄镇缔鑫五金厂</text></view>
     <view class="info"><text>姓名：曾先生</text></view>
     <view class="info"><text>手机：15697613718（微信同号）</text></view>
-    <view class="info"><text>地址：</text><a class="address"> 广东省中山市小榄镇同兴西路75号</a></view>
+    <view class="info"><text>地址：</text><text class="address" bindtap="getLocation"> 广东省中山市小榄镇高沙社区同兴西路75号</text></view>
     <view wx:if="{{isSuperMan}}" class="btn-upload">
       <text>管理员：</text>
       <button class="btn-btn" type="primary" size="mini" bindtap="toUploadpage">上传产品</button>

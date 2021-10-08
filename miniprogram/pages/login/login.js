@@ -9,9 +9,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    nickName: "", //保存昵称
-    avatarUrl: "", //保存头像,
     canIUse: true,
+    userInfo: {},
+    openid: ""
   },
 
   /**
@@ -22,51 +22,63 @@ Page({
   },
 
   getUserInfo(e) {
+    // 拿用户openid
     wx.cloud.callFunction({
       name: 'login',
-      complete: res => {
+      success: res => {
         wx.showLoading({
           title: '加载中',
         })
-        const openid = res.result.openid
-        const userInfo = res.result.event.userInfo
-
-        db.collection('user').where({
-          _openid: openid
+        this.setData({
+          openid: res.result.openid
+        })
+      },
+    })
+    // 获取用户profile
+    wx.getUserProfile({
+      desc: '用于完善会员资料',
+      success: res => {
+        this.setData({
+          userInfo: res.userInfo,
+          signature: res.signature
+        })
+        // 将用户profile放入storage缓存
+        wx.setStorage({
+          key: "userInfo",
+          data: res.userInfo
+        })
+        db.collection("user").where({
+          _openid: this.data.openid
         }).get().then(res => {
-          //确保数据库只有一份该用户的信息
+          // 第一次登陆， 保存用户信息user集合
           if (res.data.length === 0) {
-            this.setData({
-              isFirstLogin: 1
-            })
-            wx.switchTab({
-              url: '/pages/index/index',
-            })
             db.collection('user').add({
               data: {
-                nickName: e.detail.userInfo.nickName,
-                avatarUrl: e.detail.userInfo.avatarUrl,
-                time: util.formatDateTime(new Date(), 'MM/dd/yyyy HH:mm'),
+                userInfo: this.data.userInfo,
+                signature: this.data.signature
               }
             })
-          } else {
-            wx.switchTab({
-              url: '/pages/index/index',
-            })
           }
-          wx.setStorage({
-            key: "userInfo",
-            data: userInfo
+          // 跳去首页
+          wx.switchTab({
+            url: '/pages/index/index',
+          })
+          wx.showToast({
+            title: '登陆成功',
+            icon: 'success',
+            duration: 2000
           })
         })
       },
-      suscces: () =>{
+      fail: res => {
+        wx.showToast({
+          title: '授权失败',
+          icon: "error"
+        })
+      },
+      complete: () => {
         wx.hideLoading()
-      }
-    })
-    this.setData({
-      nickName: e.detail.userInfo.nickName,
-      avatarUrl: e.detail.userInfo.avatarUrl
+      },
     })
   },
 

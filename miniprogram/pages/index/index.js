@@ -55,5 +55,9 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+  /**
+   * 用户点击右上角分享朋友圈
+   */
+  onShareTimeline: function () {}
 })

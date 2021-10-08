@@ -17,14 +17,14 @@ Page({
     onLoad: function () {
         wx.setNavigationBarTitle({
             title: '产品展示',
-          })
+        })
     },
 
-    onShow: function(){
+    onShow: function () {
         this.getBannerAndCat()
     },
 
-    getBannerAndCat: function(){
+    getBannerAndCat: function () {
         let that = this
         db.collection('categories').get({
             success: res => {
@@ -46,7 +46,8 @@ Page({
         // })
     },
     scroll: function (e) {
-        var that = this, scrollTop = that.data.scrollTop;
+        var that = this,
+            scrollTop = that.data.scrollTop;
         that.setData({
             scrollTop: e.detail.scrollTop
         });
@@ -57,17 +58,17 @@ Page({
             swiperCurrent: e.detail.current
         })
     },
-	listenerSearchInput:function( e ){
-	        this.setData({
-	            searchInput: e.detail.value
-            });
-	 },
-	 toSearch:function( e ){
+    listenerSearchInput: function (e) {
         this.setData({
-            goods:[],
+            searchInput: e.detail.value
+        });
+    },
+    toSearch: function (e) {
+        this.setData({
+            goods: [],
         });
         this.getGoodList();
-	},
+    },
     tapBanner: function (e) {
         if (e.currentTarget.dataset.id != 0) {
             wx.navigateTo({
@@ -81,48 +82,54 @@ Page({
         });
     },
     catClick: function (e) {
-      this.setData({
-          activeCategoryId: e.currentTarget.id
-      });
-      this.setData({
-        goods:[]
-      });
-      if (this.data.activeCategoryId == 0) {
-        db.collection('goods').get({
+        this.setData({
+            activeCategoryId: e.currentTarget.id
+        });
+        this.setData({
+            goods: []
+        });
+        if (this.data.activeCategoryId == 0) {
+            db.collection('goods').get({
+                success: res => {
+                    this.setData({
+                        goods: this.data.goods.concat(res.data)
+                    })
+                }
+            })
+        } else {
+            this.getGoodList()
+        }
+    },
+
+    getGoodList: function () {
+        let that = this
+        if (that.data.processing) {
+            return;
+        }
+
+        that.setData({
+            processing: true
+        });
+
+        db.collection('goods').where({
+            name: db.RegExp({
+                regexp: this.data.searchInput,
+                options: 'i'
+            }),
+            category_id: this.data.activeCategoryId
+        }).get({
             success: res => {
-                this.setData ({
-                  goods: this.data.goods.concat(res.data)
+                this.setData({
+                    goods: this.data.goods.concat(res.data),
+                    processing: false
                 })
             }
         })
-      }else{
-         this.getGoodList()
-      }
-  },
+    },
+    /**
+     * 用户点击右上角分享
+     */
+    onShareAppMessage: function () {
 
-  getGoodList: function () {
-      let that = this
-      if( that.data.processing ){
-        return;
     }
-
-    that.setData({
-        processing:true
-    });
-
-    db.collection('goods').where({
-        name: db.RegExp({
-            regexp: this.data.searchInput,
-            options: 'i'
-        }),
-        category_id: this.data.activeCategoryId
-    }).get({
-        success: res => {
-            this.setData({
-                goods: this.data.goods.concat(res.data),
-                processing: false
-            })
-        }
-    })
-  }
 });

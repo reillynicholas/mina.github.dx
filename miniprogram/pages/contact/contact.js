@@ -53,6 +53,15 @@ Page({
       }
     })
   },
+  getLocation: function () {
+    wx.openLocation({
+      latitude: 22.629464,
+      longitude: 113.273364,
+      scale: 18,
+      name: "华喻五金制品厂",
+      address: "广东省中山市小榄镇高沙社区同兴西路75号"
+    })
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
