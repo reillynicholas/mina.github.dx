@@ -1,7 +1,6 @@
 //index.js
 //获取应用实例
 const app = getApp()
-
 const db = wx.cloud.database()
 
 Page({
@@ -19,21 +18,13 @@ Page({
   },
   onLoad: function () {
     var that = this;
-
     that.setData({
-      banners: [{
-          "id": 1,
-          "pic_url": "/images/strlamp.jpg"
-        },
-        {
-          "id": 2,
-          "pic_url": "/images/strlamp.jpg"
-        },
-        {
-          "id": 3,
-          "pic_url": "/images/strlamp.jpg"
-        }
-      ]
+      banners: []
+    })
+    db.collection("goods").limit(5).get().then(res => {
+      this.setData({
+        banners: res.data
+      })
     })
   },
   scroll: function (e) {

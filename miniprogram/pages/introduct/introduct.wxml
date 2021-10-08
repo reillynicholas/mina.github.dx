@@ -1,6 +1,6 @@
 <!-- <import src="/template/login/index.wxml" /> -->
 <view class="container">
-  <image class="head-image" src="/images/strlamp.jpg"></image>
+  <image class="head-image" src="/images/instruction.jpeg"></image>
   <view class="content">
     <view class="title">设备介绍</view>
     <view class="text-content">
